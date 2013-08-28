@@ -5,24 +5,29 @@ endif
 
 filetype off
 execute pathogen#infect()
+execute pathogen#helptags()
 
 set nocompatible
 
 syntax on
 filetype plugin indent on
 
+" http://dysfunctionalprogramming.co.uk/blog/2013/08/15/fight-with-tools/
 set hidden
 set number
 set timeoutlen=450 	" Time to wait after ESC
-set ts=4
-set sw=4
-set softtabstop=4
+set ts=2
+set sw=2
+set softtabstop=2
 set expandtab
+set smarttab
+set cindent
+let indent_guides_enable_on_vim_startup = 1 
 
 " These seem useful (from
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/#making-vim-more-useful)
 set encoding=utf-8
-set scrolloff=3
+set scrolloff=14
 set autoindent
 set showmode
 set showcmd
@@ -119,6 +124,10 @@ if filereadable(filename)
     let execstring = "set wildignore=".substitute(igstring, '^,', '', "g")
     execute execstring
 endif
+
+" Don't judge me
+set mouse=n
+set ttymouse=xterm2
 
 " Oooh, look at the pretty colors!
 set background=dark
