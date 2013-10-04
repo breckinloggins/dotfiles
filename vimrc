@@ -125,6 +125,14 @@ if filereadable(filename)
     execute execstring
 endif
 
+" Folding by indent automatically (but preserves syntax folding if set on the
+" mode)
+" http://vim.wikia.com/wiki/Folding
+augroup vimrc
+  au BufReadPre * setlocal foldmethod=indent
+  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
+
 " Don't judge me
 set mouse=n
 set ttymouse=xterm2
