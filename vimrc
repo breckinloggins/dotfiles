@@ -9,6 +9,13 @@ execute pathogen#helptags()
 
 set nocompatible
 
+" Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'Valloric/YouCompleteMe'
+
 syntax on
 filetype plugin indent on
 
@@ -16,9 +23,9 @@ filetype plugin indent on
 set hidden
 set number
 set timeoutlen=450 	" Time to wait after ESC
-set ts=2
-set sw=2
-set softtabstop=2
+set ts=4
+set sw=4
+set softtabstop=4
 set expandtab
 set smarttab
 set cindent
@@ -97,6 +104,8 @@ nnoremap ; :
 
 " Store swap files in fixed location, not current directory.
 set dir=~/.vimswap//,/var/tmp//,/tmp//,.
+set backupdir=~/.vimswap,.
+set directory=~/.vimswap,.
 
 " NERDS!!!
 map <C-n> :NERDTreeToggle<CR>
@@ -105,7 +114,20 @@ let g:miniBufExplModSelTarget = 1 " Try to keep MBE from dumping crap into nerd 
 
 " MiniBufExplorer
 map <Leader>t :MBEToggle<cr>
+map <Leader>d :MBEbd<cr>
+map <Leader>w :MBEbw<cr>
 let g:miniBufExplMapWindowNavVim = 1 " Cycle through buffers with C-h C-l 
+noremap <C-TAB>   :MBEbn<CR>
+noremap <C-S-TAB> :MBEbp<CR>
+
+" airline
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
+"if !exists('g:airline_symbols')
+"  let g:airline_symbols = {}
+"endif
+"let g:airline_symbols.space = "\ua0"
+"set guifont=Source\ Code\ Pro\ for\ Powerline "make sure to escape the spaces in the name properly
 
 " Make Ack.vim use Ag for must go faster
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -133,9 +155,14 @@ augroup vimrc
   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 augroup END
 
+" YouCompleteMe
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
+
 " Don't judge me
 set mouse=n
 set ttymouse=xterm2
+set selectmode+=mouse
 
 " Oooh, look at the pretty colors!
 set background=dark
